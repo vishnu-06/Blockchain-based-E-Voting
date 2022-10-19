@@ -1,0 +1,94 @@
+{% load bootstrap4 %}
+{% load i18n %}
+{% load static %}
+
+{% get_current_language as language_code %}
+{% if user.is_authenticated %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="apple-touch-icon" sizes="76x76" href="{% static 'img/apple-icon.png' %}">
+  <link rel="icon" type="image/png" href="{% static 'img/favicon.png' %}">
+  <title>
+    Blockchain Based Voting
+  </title>
+  <!--     Fonts and icons     -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+  <!-- Nucleo Icons -->
+  <link href="{% static 'css/nucleo-icons.css' %}" rel="stylesheet" />
+  <link href="{% static 'css/nucleo-svg.css' %}" rel="stylesheet" />
+  <!-- Font Awesome Icons -->
+  <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+  <!-- CSS Files -->
+  <link href="{% static 'css/soft-ui-dashboard.css' %}?v=1.0.2" rel="stylesheet" />
+</head>
+
+<body class="g-sidenav-show   bg-white">
+  <div class="container position-sticky z-index-sticky top-0">
+    <div class="row">
+      <div class="col-12">
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg  blur blur-rounded top-0  z-index-3 shadow position-absolute my-3 py-2 start-0 end-0 mx-4">
+          <div class="container-fluid">
+            <a class="navbar-brand font-weight-bolder ms-lg-0 ms-3 " href="{% url 'index' %}">
+              Blockchain Based Voting
+            </a>
+            <button class="navbar-toggler shadow-none ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon mt-2">
+                <span class="navbar-toggler-bar bar1"></span>
+                <span class="navbar-toggler-bar bar2"></span>
+                <span class="navbar-toggler-bar bar3"></span>
+              </span>
+            </button>
+          </div>
+        </nav>
+        <!-- End Navbar -->
+      </div>
+    </div>
+  </div>
+  <section>
+    <div class="page-header section-height-75">
+      <div class="container">
+        <div class="row" style="margin-left: -100px; margin-top: 120px;">
+            <h4>{% trans 'Enable 2-FA on your account' %}</h4>
+            {% with "/media/"|add:user.username|add:"_qr.png" as qr_dir %}
+            <div class="col-12">
+                <img src="{{ qr_dir }}">
+                <br><br>
+                <h5>Scan the above QR code on your 2-FA app such as Google Authenticator to enable two factor authentication for your account</h5>
+                <hr>
+                {% endwith %}
+                <h5>Save the private key provided here in a safe place before proceeding. It will not be shared again.</h5>
+                <textarea rows="5" style="width: 50%;">{{ private_key }}</textarea><br>
+                <hr>
+                <a href="{% url 'index' %}"><button class="btn btn-primary">{% trans 'Continue' %}</button></a>
+            </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--   Core JS Files   -->
+  <script>
+    var win = navigator.platform.indexOf('Win') > -1;
+    if (win && document.querySelector('#sidenav-scrollbar')) {
+      var options = {
+        damping: '0.5'
+      }
+      Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
+    }
+  </script>
+  <!-- Github buttons -->
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+  <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
+  
+  <script src="{% static 'js/soft-ui-dashboard.min.js' %}?v=1.0.2"></script>
+  
+</body>
+<script src="{% static 'js/core/popper.min.js' %}"></script>
+<script src="{% static 'js/core/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/plugins/smooth-scrollbar.min.js' %}"></script>
+</html>
+{% endif %}
