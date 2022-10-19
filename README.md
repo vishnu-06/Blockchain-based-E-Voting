@@ -25,4 +25,5 @@ In our project, we will be demonstrating the use of Parallel mining and the dist
 **Performance Chart (Blockchain difficulty vs Mining Time for n processes)**
 ![image](https://user-images.githubusercontent.com/70327869/196695763-db447b74-79e4-45a4-9bc5-bb88abeea9f3.png)
 
-
+## Document
+[Link to Document](https://github.com/vishnu-06/Blockchain-based-E-voting/blob/master/Blockchain%20based%20E-voting.pdf)
